@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFQ8M0VSFN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RFQ8M0VSFN');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tower Defense Ops - Tactical Strategy Defense Game | Gamility</title>
+  <meta name="description" content="Play Tower Defense Ops online. Deploy tactical turrets, upgrade weaponry, defend against enemy waves, and protect your headquarters in this free web game.">
+  <meta name="keywords" content="tower defense, strategy game, tactical defense, web game, turret defense, gamility">
+  <meta name="theme-color" content="#0284c7">
+
+    <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tower Defense Ops - Tactical Strategy Defense Game | Gamility">
+  <meta property="og:description" content="Play Tower Defense Ops online. Deploy tactical turrets, upgrade weaponry, defend against enemy waves, and protect your headquarters in this free web game.">
+  <meta property="og:image" content="preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Tower Defense Ops - Tactical Strategy Defense Game | Gamility">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tower Defense Ops - Tactical Strategy Defense Game | Gamility">
+  <meta name="twitter:description" content="Play Tower Defense Ops online. Deploy tactical turrets, upgrade weaponry, defend against enemy waves, and protect your headquarters in this free web game.">
+  <meta name="twitter:image" content="preview.png">
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tower Defense Ops",
+    "url": "https://mahesh-yennam.github.io/Gamility/games/tower-defense-ops/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "All",
+    "genre": ["Strategy", "Tower Defense", "Tactical"],
+    "description": "Tactical grid-based tower defense game featuring 4 upgradable turret classes, multi-wave enemy assaults, and synthesized Web Audio ballistics."
+  }
+  </script>
+</head>
+<body>
+  <!-- Top Gamility Ribbon for Standalone & Repos Navigation -->
+  <header class="top-nav-ribbon" role="banner">
+    <a href="https://mahesh-yennam.github.io/Gamility/" class="ribbon-brand" title="Gamility Home">
+      <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 4L4 12V28L20 36L36 28V12L20 4Z" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M20 12L12 16V24L20 28L28 24V16L20 12Z" fill="#0284c7" fill-opacity="0.85"/>
+        <circle cx="20" cy="20" r="3" fill="#ffffff"/>
+      </svg>
+      <span>Gamility Arcade</span>
+    </a>
+    <a href="https://mahesh-yennam.github.io/Gamility/games.html" class="ribbon-back-btn" title="Back to All Games">
+      <span>←</span> Back to Games
+    </a>
+  </header>
+
+  <!-- Main Game Stage -->
+  <main class="game-wrapper" id="gameWrapper">
+    <!-- Header with Live HUD -->
+    <header class="arcade-header">
+      <div class="game-title-badge">
+        <h1>Tower Defense Ops</h1>
+        <span class="game-mode-subtitle" id="modeSubtitle">Tactical Grid • Ready for Deployment</span>
+      </div>
+      <div class="hud-panel" aria-label="Game HUD">
+        <div class="hud-stat">
+          <span class="hud-label">Credits</span>
+          <span id="creditsVal" class="hud-val stat-gold">450 ¢</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Lives</span>
+          <span id="livesVal" class="hud-val stat-red">15 ❤️</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Wave</span>
+          <span id="waveVal" class="hud-val stat-cyan">Wave 1</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Score</span>
+          <span id="scoreVal" class="hud-val stat-green">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Controls Toolbar -->
+    <div class="controls-toolbar">
+      <div class="toolbar-btn-group">
+        <button id="startWaveBtn" class="tool-icon-btn highlight-btn" type="button" title="Launch Next Wave (Spacebar)">
+          <span>⚔️</span> Launch Wave
+        </button>
+        <button id="speedToggleBtn" class="tool-icon-btn" type="button" title="Toggle Speed">
+          <span>⏩</span> Speed: 1x
+        </button>
+        <button id="pauseBtn" class="tool-icon-btn" type="button" title="Pause Game (P)">
+          <span>⏸️</span> Pause
+        </button>
+        <button id="muteBtn" class="tool-icon-btn" type="button" title="Toggle Sound">
+          <span>🔊</span> Sound
+        </button>
+      </div>
+    </div>
+
+    <!-- Tactical Battlefield Canvas Stage -->
+    <div class="canvas-container">
+      <canvas id="gameCanvas" width="800" height="480" aria-label="Tower Defense Tactical Battlefield"></canvas>
+
+      <!-- Start Mission Overlay -->
+      <div id="startOverlay" class="arcade-overlay">
+        <div class="tactical-badge">COMMAND BRIEFING</div>
+        <h2 class="overlay-title">Tower Defense Ops</h2>
+        <p class="overlay-subtitle">Enemy mechanized forces are converging on Base HQ. Deploy tactical turrets along the approach vector and hold the line!</p>
+        <button id="startBtn" class="arcade-btn" type="button">
+          <span>🛡️</span> Enter Battle Grid
+        </button>
+      </div>
+
+      <!-- Game Over Overlay -->
+      <div id="gameOverOverlay" class="arcade-overlay hidden">
+        <div class="tactical-badge red-badge">PERIMETER BREACHED</div>
+        <h2 class="overlay-title red-title">Base HQ Lost</h2>
+        <div class="final-score-box">
+          <p>Waves Survived: <strong id="finalWave" class="stat-cyan">0</strong></p>
+          <p>Total Score: <strong id="finalScore" class="stat-green">0</strong></p>
+          <p>Best Score: <strong id="bestScoreEl" class="stat-gold">0</strong></p>
+        </div>
+        <button id="restartBtn" class="arcade-btn" type="button">
+          <span>🔄</span> Re-deploy Defense
+        </button>
+      </div>
+
+      <!-- Mission Victory Overlay -->
+      <div id="victoryOverlay" class="arcade-overlay hidden">
+        <div class="tactical-badge gold-badge">SECTOR SECURED</div>
+        <h2 class="overlay-title gold-title">Victory!</h2>
+        <p class="overlay-subtitle">All 20 assault waves have been obliterated. Outstanding tactical execution, Commander!</p>
+        <div class="final-score-box">
+          <p>Final Score: <strong id="victoryScore" class="stat-gold">0</strong></p>
+          <p>Lives Remaining: <strong id="victoryLives" class="stat-red">15</strong></p>
+          <p>Best Score: <strong id="vicBestScoreEl" class="stat-gold">0</strong></p>
+        </div>
+        <button id="playAgainBtn" class="arcade-btn" type="button">
+          <span>🎖️</span> Play Again
+        </button>
+      </div>
+    </div>
+
+    <!-- Arsenal Turret Selection Tray -->
+    <section class="arsenal-section" aria-label="Turret Deployment Arsenal">
+      <div class="arsenal-tray">
+        <button class="turret-card active" data-turret-type="gatling" type="button">
+          <div class="turret-icon">🔫</div>
+          <div class="turret-info">
+            <span class="turret-name">Gatling</span>
+            <span class="turret-cost">100 ¢</span>
+          </div>
+          <span class="turret-stat-pill">Rapid Fire</span>
+        </button>
+
+        <button class="turret-card" data-turret-type="frost" type="button">
+          <div class="turret-icon">❄️</div>
+          <div class="turret-info">
+            <span class="turret-name">Frost</span>
+            <span class="turret-cost">150 ¢</span>
+          </div>
+          <span class="turret-stat-pill">Slows 50%</span>
+        </button>
+
+        <button class="turret-card" data-turret-type="laser" type="button">
+          <div class="turret-icon">⚡</div>
+          <div class="turret-info">
+            <span class="turret-name">Plasma</span>
+            <span class="turret-cost">225 ¢</span>
+          </div>
+          <span class="turret-stat-pill">Piercing</span>
+        </button>
+
+        <button class="turret-card" data-turret-type="missile" type="button">
+          <div class="turret-icon">🚀</div>
+          <div class="turret-info">
+            <span class="turret-name">Missile</span>
+            <span class="turret-cost">300 ¢</span>
+          </div>
+          <span class="turret-stat-pill">Area Splash</span>
+        </button>
+      </div>
+
+      <!-- Turret Inspector & Upgrade Bar -->
+      <div class="inspector-panel hidden" id="inspectorPanel">
+        <div class="inspector-details">
+          <strong id="inspectorTitle">Gatling (Level 1)</strong>
+          <span id="inspectorStats">Dmg: 15 • Rate: 0.2s • Range: 110</span>
+        </div>
+        <div class="inspector-actions">
+          <button id="upgradeBtn" class="inspector-btn upgrade-btn" type="button">
+            <span>⬆️</span> Upgrade (<span id="upgradeCost">80 ¢</span>)
+          </button>
+          <button id="sellBtn" class="inspector-btn sell-btn" type="button">
+            <span>💰</span> Sell (<span id="sellValue">70 ¢</span>)
+          </button>
+          <button id="closeInspectorBtn" class="inspector-btn close-btn" type="button">
+            <span>✕</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instructions & Rules Card -->
+    <section class="game-instructions-card" aria-label="Tower Defense Tactical Guide">
+      <h3>🛡️ Tactical Guidelines & Combat Protocol</h3>
+      <div class="legend-grid">
+        <div class="legend-item">
+          <span class="legend-badge">🔫</span>
+          <div><strong>Gatling (100 ¢):</strong> High-velocity ballistic cannon. Devastating against swift light reconnaissance drones.</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">❄️</span>
+          <div><strong>Frost Beam (150 ¢):</strong> Cryogenic beam that slows marching units by 50%, grouping them for splash weapons.</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">⚡</span>
+          <div><strong>Plasma Laser (225 ¢):</strong> Intense continuous thermal beam that rapidly melts thick armor and boss mechs.</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">🚀</span>
+          <div><strong>Missile Pod (300 ¢):</strong> Long-range guided rockets delivering massive area-of-effect splash explosions.</div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #94a3b8; line-height: 1.5;">
+        <strong>Desktop Controls:</strong> Click a turret in the arsenal to select, then click any empty grid zone outside the path to deploy. Click placed turrets to upgrade or sell. Press <strong>Spacebar</strong> to launch waves and <strong>P</strong> to Pause.<br>
+        <strong>Mobile Controls:</strong> Tap turrets to select and tap the battlefield grid to construct.
+      </p>
+    </section>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
